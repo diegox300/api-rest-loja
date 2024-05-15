@@ -6,14 +6,12 @@ import { Type } from "class-transformer";
 
 export class CriaProdutoDTO {
 
-    @IsNotEmpty()
+    @IsNotEmpty({message: "Nome não pode ser vazio"})
     nome: string;
-
-    @IsPositive()
-    @IsDecimal({ decimal_digits: '2' })
+    
     valor: number;
 
-    @IsPositive()
+    @IsPositive({message: "Quantidade tem que ser possitiva."})
     quantidade: number;
 
     @IsNotEmpty()
