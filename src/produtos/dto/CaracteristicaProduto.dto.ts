@@ -1,4 +1,8 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class CaracteristicaProdutoDTO {
-    nome: string;
-    descricao: string;
-  }
+  @IsNotEmpty()
+  nome: string;
+  @IsNotEmpty()
+  descricao: string;
+}

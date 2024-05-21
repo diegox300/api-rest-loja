@@ -22,18 +22,15 @@ export class ProdutoController {
     produtoEntity.id = uuid();
     this.produtoRepository.salvar(produtoEntity);
     return {
-      produto: new ListaProdutoDTO(produtoEntity.id, produtoEntity.nome, produtoEntity.caracteristicas),
-      message: 'Produto Criado com Sucesso.' };
+      produto: new ListaProdutoDTO(produtoEntity.id, produtoEntity.nome),
+      message: 'Produto Criado com Sucesso.',
+    };
   }
   @Get()
   async listProdutos() {
     const produtosSalvos = await this.produtoRepository.listar();
     const produtosLista = produtosSalvos.map(
-      produtos => new ListaProdutoDTO(
-        produtos.id,
-        produtos.nome,
-        produtos.caracteristicas
-      )
+      (produtos) => new ListaProdutoDTO(produtos.id, produtos.nome),
     );
     return produtosLista;
   }

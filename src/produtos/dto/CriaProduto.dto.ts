@@ -1,33 +1,37 @@
-import { IsArray, IsDecimal, IsNotEmpty, IsPositive, MaxLength, ValidateNested } from "class-validator";
-import { CaracteristicaProdutoDTO } from "./CaracteristicaProduto.dto";
-import { ImagemProdutoDTO } from "./ImagemProduto.dto";
-import { Type } from "class-transformer";
-
+import {
+  IsArray,
+  IsNotEmpty,
+  IsPositive,
+  MaxLength,
+  ValidateNested,
+} from 'class-validator';
+import { CaracteristicaProdutoDTO } from './CaracteristicaProduto.dto';
+import { ImagemProdutoDTO } from './ImagemProduto.dto';
+import { Type } from 'class-transformer';
 
 export class CriaProdutoDTO {
+  @IsNotEmpty({ message: 'Nome não pode ser vazio' })
+  nome: string;
 
-    @IsNotEmpty({message: "Nome não pode ser vazio"})
-    nome: string;
-    
-    valor: number;
+  valor: number;
 
-    @IsPositive({message: "Quantidade tem que ser possitiva."})
-    quantidade: number;
+  @IsPositive({ message: 'Quantidade tem que ser possitiva.' })
+  quantidade: number;
 
-    @IsNotEmpty()
-    @MaxLength(1000)
-    descricao: string;
+  @IsNotEmpty()
+  @MaxLength(1000)
+  descricao: string;
 
-    @Type(() => CaracteristicaProdutoDTO)
-    @IsArray()
-    @ValidateNested()
-    caracteristicas: CaracteristicaProdutoDTO[];
+  @Type(() => CaracteristicaProdutoDTO)
+  @IsArray()
+  @ValidateNested()
+  caracteristicas: CaracteristicaProdutoDTO;
 
-    @Type(() => CaracteristicaProdutoDTO)
-    @IsArray()
-    @ValidateNested()
-    imagens: ImagemProdutoDTO[];
+  @Type(() => ImagemProdutoDTO)
+  @IsArray()
+  @ValidateNested()
+  imagens: ImagemProdutoDTO;
 
-    @IsNotEmpty()
-    categoria: string;
+  @IsNotEmpty()
+  categoria: string;
 }
