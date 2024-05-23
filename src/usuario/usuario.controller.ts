@@ -54,5 +54,4 @@ export class UsuarioController {
       messagem: 'Usuário removido com sucesso.' 
     }
   }
-  
 }
